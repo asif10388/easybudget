@@ -1,18 +1,19 @@
 import React from 'react';
-import {Text, View, Button} from 'react-native';
-import type {RootStackParamList} from '../types/RootStackParamList';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-interface IAuthProps {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'Auth'>;
-}
+const Login = React.lazy(() => import('../comps/Login'));
 
-const Auth = ({navigation}: IAuthProps) => {
+type AuthStackParamsType = {
+  Login: undefined;
+};
+
+const AuthStack = createNativeStackNavigator<AuthStackParamsType>();
+const AuthStackNavigator = () => {
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Button title="Go to Auth" onPress={() => navigation.navigate('Main')} />
-    </View>
+    <AuthStack.Navigator initialRouteName="Login">
+      <AuthStack.Screen name="Login" component={Login} />
+    </AuthStack.Navigator>
   );
 };
 
-export default Auth;
+export default AuthStackNavigator;

@@ -116,6 +116,4 @@ dependencies {
     } else {
         implementation jscFlavor
     }
-
-	compile project(':react-native-get-sms-android')
 }
